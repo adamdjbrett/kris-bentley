@@ -1,4 +1,4 @@
-\Outline for website for Kris Bentley (with comments in parentheses and brackets)
+# Outline for website for Kris Bentley (with comments in parentheses and brackets)
 
 I have attached a Word document with an outline for the website that includes text and links for the various sections(except for my bio, which I am still working on).  Please let me know whether or not I have been detailed enough or what I need to add or adjust. 
 
