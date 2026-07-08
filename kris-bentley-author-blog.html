@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kristen Plinke Bentley — Author & Theologian</title>
+
+  <!-- Basecoat UI -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.cdn.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/js/all.min.js" defer></script>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Cormorant Garamond (display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'slate-teal':   '#375B70',
+            'slate-teal-dk':'#263f4e',
+            'cerulean':     '#5CA0BF',
+            'cerulean-lt':  '#a8cfe0',
+            'gold':         '#F0D478',
+            'gold-dk':      '#c9a93a',
+            'rust':         '#C26E40',
+            'rust-dk':      '#a05530',
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            body:    ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #ffffff; color: #1e2d36; }
+
+    /* ── Bracket motif (signature element) ── */
+    .bracket-frame {
+      position: relative;
+      display: inline-block;
+    }
+    .bracket-frame::before,
+    .bracket-frame::after {
+      content: '';
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-color: #F0D478;
+      border-style: solid;
+    }
+    .bracket-frame::before {
+      top: -6px; left: -6px;
+      border-width: 2px 0 0 2px;
+    }
+    .bracket-frame::after {
+      bottom: -6px; right: -6px;
+      border-width: 0 2px 2px 0;
+    }
+
+    /* ── Bracket accent for section headings ── */
+    .section-bracket {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .section-bracket::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 4px; bottom: 4px;
+      width: 3px;
+      background: #5CA0BF;
+      border-radius: 2px;
+    }
+
+    /* ── Nav link hover ── */
+    .nav-link {
+      position: relative;
+      color: #a8cfe0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .nav-link:hover { color: #F0D478; }
+    .nav-link.active { color: #F0D478; }
+
+    /* ── Blog card hover ── */
+    .blog-card {
+      border: 1px solid #e8eef2;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+      background: #ffffff;
+    }
+    .blog-card:hover {
+      border-color: #5CA0BF;
+      box-shadow: 0 6px 24px rgba(55,91,112,0.10);
+      transform: translateY(-2px);
+    }
+
+    /* ── Tag pill ── */
+    .tag-pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    /* ── CTA button ── */
+    .btn-cta {
+      background: #C26E40;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.75rem 2rem;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-cta:hover { background: #a05530; transform: translateY(-1px); }
+
+    /* ── Secondary button ── */
+    .btn-outline {
+      background: transparent;
+      color: #F0D478;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.7rem 1.8rem;
+      border-radius: 2px;
+      border: 1.5px solid #F0D478;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { background: #F0D478; color: #263f4e; }
+
+    /* ── Prose link ── */
+    .prose-link {
+      color: #5CA0BF;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .prose-link:hover { border-color: #5CA0BF; }
+
+    /* ── Newsletter input ── */
+    .email-input {
+      border: 1.5px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      color: #ffffff;
+      padding: 0.72rem 1rem;
+      border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .email-input::placeholder { color: rgba(255,255,255,0.45); }
+    .email-input:focus { border-color: #F0D478; }
+
+    /* ── Section divider ── */
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: #5CA0BF;
+      border-radius: 1px;
+      margin: 1.25rem 0;
+    }
+
+    /* ── Quote block ── */
+    .pull-quote {
+      border-left: 3px solid #F0D478;
+      padding-left: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.35rem;
+      line-height: 1.6;
+      color: #375B70;
+    }
+
+    /* ── Scroll reveal (lightweight) ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .blog-card { transition: none; }
+      .btn-cta, .btn-outline { transition: none; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid { flex-direction: column; }
+      .hero-book  { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+<nav style="background:#375B70; position:sticky; top:0; z-index:50; border-bottom:1px solid rgba(255,255,255,0.08);">
+  <div style="max-width:1100px; margin:0 auto; padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:60px;">
+
+    <!-- Logo / Name -->
+    <a href="#" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
+      <div style="width:32px; height:32px; border:1.5px solid #F0D478; border-radius:2px; display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:600; color:#F0D478; line-height:1;">KB</span>
+      </div>
+      <span style="font-family:'Inter',sans-serif; font-size:0.85rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:#ffffff;">Kristen Plinke Bentley</span>
+    </a>
+
+    <!-- Desktop links -->
+    <div style="display:flex; align-items:center; gap:2rem;" class="hidden md:flex">
+      <a href="#about"   class="nav-link">About</a>
+      <a href="#book"    class="nav-link">Book</a>
+      <a href="#blog"    class="nav-link active">Writing</a>
+      <a href="#speaking" class="nav-link">Speaking</a>
+      <a href="#connect" class="btn-cta" style="padding:0.45rem 1.25rem; font-size:0.8rem;">Get the book</a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button onclick="toggleMenu()" id="hamburger" aria-label="Open menu" style="background:none; border:none; cursor:pointer; display:none; flex-direction:column; gap:5px; padding:4px;" class="flex md:hidden">
+      <span style="display:block; width:22px; height:1.5px; background:#ffffff;"></span>
+      <span style="display:block; width:22px; height:1.5px; background:#ffffff;"></span>
+      <span style="display:block; width:22px; height:1.5px; background:#ffffff;"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" style="display:none; padding:1rem 2rem 1.5rem; border-top:1px solid rgba(255,255,255,0.1);">
+    <div style="display:flex; flex-direction:column; gap:1rem;">
+      <a href="#about"    class="nav-link" onclick="toggleMenu()">About</a>
+      <a href="#book"     class="nav-link" onclick="toggleMenu()">Book</a>
+      <a href="#blog"     class="nav-link active" onclick="toggleMenu()">Writing</a>
+      <a href="#speaking" class="nav-link" onclick="toggleMenu()">Speaking</a>
+      <a href="#connect"  class="btn-cta" style="padding:0.6rem 1.4rem; margin-top:0.5rem; text-align:center;" onclick="toggleMenu()">Get the book</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section id="about" style="background:#375B70; padding:5rem 2rem 4rem;">
+  <div style="max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:5rem;" class="hero-grid">
+
+    <!-- Left: text -->
+    <div style="flex:1; min-width:0;">
+      <p style="font-family:'Inter',sans-serif; font-size:0.78rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#5CA0BF; margin:0 0 1.25rem;">Theologian · Author · Minister</p>
+
+      <h1 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.6rem,5vw,4rem); font-weight:300; line-height:1.1; color:#ffffff; margin:0 0 0.5rem;">
+        Ministry isn't<br>
+        <em style="font-style:italic; color:#F0D478;">a single calling.</em>
+      </h1>
+
+      <div class="divider"></div>
+
+      <p style="font-family:'Inter',sans-serif; font-size:1.05rem; line-height:1.75; color:rgba(255,255,255,0.75); max-width:500px; margin:0 0 2rem;">
+        Kristen Plinke Bentley writes at the intersection of vocation, theology, and congregational life — offering field-tested wisdom for ministers who serve in more than one world at once.
+      </p>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="#book"    class="btn-cta">Read the book</a>
+        <a href="#blog"    class="btn-outline">Explore the blog</a>
+      </div>
+
+      <!-- Social proof strip -->
+      <div style="margin-top:2.5rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.12); display:flex; gap:2rem; flex-wrap:wrap;">
+        <div>
+          <p style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:600; color:#F0D478; margin:0; line-height:1;">1 in 4</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:rgba(255,255,255,0.55); margin:4px 0 0; letter-spacing:0.04em;">U.S. ministers serve bivocationally</p>
+        </div>
+        <div>
+          <p style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:600; color:#F0D478; margin:0; line-height:1;">12 yrs</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:rgba(255,255,255,0.55); margin:4px 0 0; letter-spacing:0.04em;">of field research &amp; ministry practice</p>
+        </div>
+        <div>
+          <p style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:600; color:#F0D478; margin:0; line-height:1;">Chalice</p>
+          <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:rgba(255,255,255,0.55); margin:4px 0 0; letter-spacing:0.04em;">Press, 2024</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: book cover with bracket frame -->
+    <div class="hero-book" style="flex-shrink:0; display:flex; align-items:center; justify-content:center;">
+      <div class="bracket-frame" style="padding:10px;">
+        <img
+          src="9780827203419BivocationalMinistrycover_1041x1609.jpg"
+          alt="Bivocational Ministry: Field Notes for Congregations and Ministers by Kristen Plinke Bentley — book cover"
+          style="width:220px; display:block; border-radius:2px; box-shadow:0 20px 60px rgba(0,0,0,0.4);"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     BOOK CALLOUT
+══════════════════════════════════════════ -->
+<section id="book" style="background:#263f4e; padding:3.5rem 2rem;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center;" class="md:grid-cols-2">
+      <div>
+        <p style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#5CA0BF; margin:0 0 0.6rem;">New from Chalice Press</p>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:400; color:#ffffff; margin:0 0 0.75rem; line-height:1.2;">
+          <em>Bivocational Ministry:</em><br>
+          <span style="font-size:1.4rem; font-weight:300; color:rgba(255,255,255,0.7);">Field Notes for Congregations and Ministers</span>
+        </h2>
+        <p style="font-family:'Inter',sans-serif; font-size:0.95rem; line-height:1.75; color:rgba(255,255,255,0.65); max-width:520px; margin:0 0 1.5rem;">
+          A practical, pastoral guide for congregations navigating ministry when their pastor also holds another job — and for ministers learning to hold both worlds with integrity and grace.
+        </p>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <a href="#" class="btn-cta">Order from Chalice Press</a>
+          <a href="#" class="btn-outline" style="border-color:rgba(255,255,255,0.3); color:rgba(255,255,255,0.7);">Amazon</a>
+          <a href="#" class="btn-outline" style="border-color:rgba(255,255,255,0.3); color:rgba(255,255,255,0.7);">Bookshop.org</a>
+        </div>
+      </div>
+      <!-- Pull quote -->
+      <div style="max-width:320px;">
+        <div class="pull-quote" style="border-color:#5CA0BF; color:rgba(255,255,255,0.85);">
+          "The bivocational pastor is not a half-pastor. They are a whole person doing a whole ministry in a whole community."
+        </div>
+        <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:rgba(255,255,255,0.4); margin:0.75rem 0 0; letter-spacing:0.04em;">— from <em>Bivocational Ministry</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     BLOG POSTS
+══════════════════════════════════════════ -->
+<section id="blog" style="padding:5rem 2rem; background:#f8fafc;">
+  <div style="max-width:1100px; margin:0 auto;">
+
+    <!-- Section header -->
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:2.5rem; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#5CA0BF; margin:0 0 0.5rem;">From the blog</p>
+        <h2 class="section-bracket" style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:400; color:#263f4e; margin:0; line-height:1.2;">
+          Field Notes &amp; Reflections
+        </h2>
+      </div>
+      <a href="#" class="prose-link" style="font-family:'Inter',sans-serif; font-size:0.875rem; white-space:nowrap;">All posts →</a>
+    </div>
+
+    <!-- Filter tabs -->
+    <div id="filter-tabs" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2rem;">
+      <button onclick="filterPosts('all')"        class="filter-btn active-filter" data-filter="all">All</button>
+      <button onclick="filterPosts('vocation')"   class="filter-btn" data-filter="vocation">Vocation</button>
+      <button onclick="filterPosts('congregation')" class="filter-btn" data-filter="congregation">Congregation</button>
+      <button onclick="filterPosts('theology')"   class="filter-btn" data-filter="theology">Theology</button>
+      <button onclick="filterPosts('practice')"   class="filter-btn" data-filter="practice">Ministry Practice</button>
+    </div>
+
+    <!-- Posts grid -->
+    <div id="posts-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:1.5rem;">
+
+      <!-- Post 1 -->
+      <article class="blog-card reveal" data-category="vocation">
+        <div style="height:6px; background:#375B70;"></div>
+        <div style="padding:1.5rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+            <span class="tag-pill" style="background:#e6f1f8; color:#375B70;">Vocation</span>
+            <time style="font-family:'Inter',sans-serif; font-size:0.72rem; color:#94a3b8;">May 14, 2025</time>
+          </div>
+          <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500; color:#1e2d36; margin:0 0 0.6rem; line-height:1.3;">
+            <a href="#" style="text-decoration:none; color:inherit; hover:color:#375B70;">What Your Day Job Teaches You About the Gospel</a>
+          </h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; line-height:1.7; color:#64748b; margin:0 0 1.25rem;">
+            The warehouse floor, the hospital ward, the classroom — each workplace is a seminary of the unexpected. Here's what bivocational ministers know that full-time clergy often miss.
+          </p>
+          <a href="#" class="prose-link" style="font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:500; letter-spacing:0.03em;">Read more →</a>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="blog-card reveal" data-category="congregation" style="transition-delay:0.1s;">
+        <div style="height:6px; background:#5CA0BF;"></div>
+        <div style="padding:1.5rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+            <span class="tag-pill" style="background:#e8f5f0; color:#0f6e56;">Congregation</span>
+            <time style="font-family:'Inter',sans-serif; font-size:0.72rem; color:#94a3b8;">Apr 28, 2025</time>
+          </div>
+          <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500; color:#1e2d36; margin:0 0 0.6rem; line-height:1.3;">
+            <a href="#" style="text-decoration:none; color:inherit;">How to Love a Minister Who Is Also Your Neighbor</a>
+          </h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; line-height:1.7; color:#64748b; margin:0 0 1.25rem;">
+            When your pastor is also your coworker, your children's teacher, or the person who bags your groceries — what does faithful congregation membership look like?
+          </p>
+          <a href="#" class="prose-link" style="font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:500; letter-spacing:0.03em;">Read more →</a>
+        </div>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="blog-card reveal" data-category="theology" style="transition-delay:0.15s;">
+        <div style="height:6px; background:#C26E40;"></div>
+        <div style="padding:1.5rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+            <span class="tag-pill" style="background:#fdf0e8; color:#7a3a10;">Theology</span>
+            <time style="font-family:'Inter',sans-serif; font-size:0.72rem; color:#94a3b8;">Apr 5, 2025</time>
+          </div>
+          <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500; color:#1e2d36; margin:0 0 0.6rem; line-height:1.3;">
+            <a href="#" style="text-decoration:none; color:inherit;">On the Theology of the Tired Body</a>
+          </h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; line-height:1.7; color:#64748b; margin:0 0 1.25rem;">
+            What does Christian theology have to say to those who work two jobs, raise families, and still show up on Sunday? More than we might expect.
+          </p>
+          <a href="#" class="prose-link" style="font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:500; letter-spacing:0.03em;">Read more →</a>
+        </div>
+      </article>
+
+      <!-- Post 4 -->
+      <article class="blog-card reveal" data-category="practice" style="transition-delay:0.05s;">
+        <div style="height:6px; background:#F0D478;"></div>
+        <div style="padding:1.5rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+            <span class="tag-pill" style="background:#fdf9e8; color:#7a5c00;">Ministry Practice</span>
+            <time style="font-family:'Inter',sans-serif; font-size:0.72rem; color:#94a3b8;">Mar 19, 2025</time>
+          </div>
+          <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500; color:#1e2d36; margin:0 0 0.6rem; line-height:1.3;">
+            <a href="#" style="text-decoration:none; color:inherit;">A Practical Guide to Sermon Prep When You're Also Exhausted</a>
+          </h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; line-height:1.7; color:#64748b; margin:0 0 1.25rem;">
+            Six concrete practices for preparing a faithful sermon when you have 12 hours a week — not 40 — to give to the congregation.
+          </p>
+          <a href="#" class="prose-link" style="font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:500; letter-spacing:0.03em;">Read more →</a>
+        </div>
+      </article>
+
+      <!-- Post 5 -->
+      <article class="blog-card reveal" data-category="congregation" style="transition-delay:0.2s;">
+        <div style="height:6px; background:#5CA0BF;"></div>
+        <div style="padding:1.5rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+            <span class="tag-pill" style="background:#e8f5f0; color:#0f6e56;">Congregation</span>
+            <time style="font-family:'Inter',sans-serif; font-size:0.72rem; color:#94a3b8;">Mar 3, 2025</time>
+          </div>
+          <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500; color:#1e2d36; margin:0 0 0.6rem; line-height:1.3;">
+            <a href="#" style="text-decoration:none; color:inherit;">Small Churches Are Not Failing Churches</a>
+          </h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; line-height:1.7; color:#64748b; margin:0 0 1.25rem;">
+            Rethinking what health and faithfulness look like in communities that will never fill a stadium — and why that's worth celebrating.
+          </p>
+          <a href="#" class="prose-link" style="font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:500; letter-spacing:0.03em;">Read more →</a>
+        </div>
+      </article>
+
+      <!-- Post 6 -->
+      <article class="blog-card reveal" data-category="vocation" style="transition-delay:0.1s;">
+        <div style="height:6px; background:#375B70;"></div>
+        <div style="padding:1.5rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+            <span class="tag-pill" style="background:#e6f1f8; color:#375B70;">Vocation</span>
+            <time style="font-family:'Inter',sans-serif; font-size:0.72rem; color:#94a3b8;">Feb 12, 2025</time>
+          </div>
+          <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500; color:#1e2d36; margin:0 0 0.6rem; line-height:1.3;">
+            <a href="#" style="text-decoration:none; color:inherit;">The Gift of the Bivocational Call</a>
+          </h3>
+          <p style="font-family:'Inter',sans-serif; font-size:0.875rem; line-height:1.7; color:#64748b; margin:0 0 1.25rem;">
+            What if holding two callings isn't a compromise, but a particular charism — a way of embodying the gospel that a fully-funded pastor simply cannot?
+          </p>
+          <a href="#" class="prose-link" style="font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:500; letter-spacing:0.03em;">Read more →</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Load more -->
+    <div style="text-align:center; margin-top:2.5rem;">
+      <button onclick="loadMore()" class="btn-outline" style="border-color:#375B70; color:#375B70;">Load more posts</button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SPEAKING
+══════════════════════════════════════════ -->
+<section id="speaking" style="padding:4.5rem 2rem; background:#ffffff; border-top:1px solid #e8eef2;">
+  <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+    <div class="reveal">
+      <p style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#5CA0BF; margin:0 0 0.5rem;">Speaking &amp; Workshops</p>
+      <h2 class="section-bracket" style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:400; color:#263f4e; margin:0 0 1rem; line-height:1.2;">
+        Bring this conversation to your community
+      </h2>
+      <p style="font-family:'Inter',sans-serif; font-size:0.95rem; line-height:1.75; color:#64748b; margin:0 0 1.5rem;">
+        Kristen leads workshops and retreats for congregations, ministerial associations, and seminary students on bivocational ministry, congregational vitality, and the theology of work.
+      </p>
+      <ul style="list-style:none; padding:0; margin:0 0 1.75rem; display:flex; flex-direction:column; gap:0.75rem;">
+        <li style="display:flex; align-items:center; gap:0.75rem; font-family:'Inter',sans-serif; font-size:0.875rem; color:#475569;">
+          <span style="width:6px; height:6px; border-radius:50%; background:#C26E40; flex-shrink:0;"></span>
+          Congregational workshops on bivocational ministry
+        </li>
+        <li style="display:flex; align-items:center; gap:0.75rem; font-family:'Inter',sans-serif; font-size:0.875rem; color:#475569;">
+          <span style="width:6px; height:6px; border-radius:50%; background:#C26E40; flex-shrink:0;"></span>
+          Seminary and denominational conference keynotes
+        </li>
+        <li style="display:flex; align-items:center; gap:0.75rem; font-family:'Inter',sans-serif; font-size:0.875rem; color:#475569;">
+          <span style="width:6px; height:6px; border-radius:50%; background:#C26E40; flex-shrink:0;"></span>
+          Book club &amp; reading group facilitation
+        </li>
+        <li style="display:flex; align-items:center; gap:0.75rem; font-family:'Inter',sans-serif; font-size:0.875rem; color:#475569;">
+          <span style="width:6px; height:6px; border-radius:50%; background:#C26E40; flex-shrink:0;"></span>
+          Clergy self-care &amp; sustainability retreats
+        </li>
+      </ul>
+      <a href="#connect" class="btn-cta">Inquire about speaking</a>
+    </div>
+
+    <!-- Testimonial -->
+    <div class="reveal" style="transition-delay:0.1s;">
+      <div style="background:#f8fafc; border-radius:4px; padding:2rem; border:1px solid #e8eef2; position:relative;">
+        <!-- Decorative open-quote -->
+        <div style="font-family:'Cormorant Garamond',serif; font-size:5rem; line-height:0.7; color:#F0D478; margin-bottom:0.5rem; opacity:0.6;">"</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; line-height:1.7; color:#263f4e; margin:0 0 1.25rem;">
+          Kristen's workshop gave our governing board language we didn't have before — and a framework for honoring our pastor's whole life, not just her Sunday mornings.
+        </p>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <div style="width:36px; height:36px; border-radius:50%; background:#375B70; display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; color:#F0D478;">JM</div>
+          <div>
+            <p style="font-family:'Inter',sans-serif; font-size:0.825rem; font-weight:500; color:#263f4e; margin:0;">Jean Morrison</p>
+            <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:#94a3b8; margin:0;">Board Chair, First Congregational UCC</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem; background:#f8fafc; border-radius:4px; padding:2rem; border:1px solid #e8eef2;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:5rem; line-height:0.7; color:#5CA0BF; margin-bottom:0.5rem; opacity:0.5;">"</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; line-height:1.7; color:#263f4e; margin:0 0 1.25rem;">
+          Every seminary student considering a bivocational path should read this book and hear Kristen speak. It changed how I understand ordination.
+        </p>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <div style="width:36px; height:36px; border-radius:50%; background:#5CA0BF; display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; color:#263f4e;">RP</div>
+          <div>
+            <p style="font-family:'Inter',sans-serif; font-size:0.825rem; font-weight:500; color:#263f4e; margin:0;">Rev. Dr. Rosalee Parker</p>
+            <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:#94a3b8; margin:0;">Professor of Ministry, Lexington Seminary</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     NEWSLETTER CTA
+══════════════════════════════════════════ -->
+<section id="connect" style="background:#375B70; padding:5rem 2rem;">
+  <div style="max-width:600px; margin:0 auto; text-align:center;">
+    <!-- Bracket motif (decorative) -->
+    <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin-bottom:1.5rem;">
+      <div style="width:20px; height:20px; border-top:1.5px solid #F0D478; border-left:1.5px solid #F0D478;"></div>
+      <p style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#5CA0BF; margin:0;">Field Notes Newsletter</p>
+      <div style="width:20px; height:20px; border-bottom:1.5px solid #F0D478; border-right:1.5px solid #F0D478;"></div>
+    </div>
+
+    <h2 style="font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:300; color:#ffffff; margin:0 0 0.75rem; line-height:1.2;">
+      Theology for the<br><em style="color:#F0D478;">full week</em>
+    </h2>
+    <p style="font-family:'Inter',sans-serif; font-size:0.95rem; line-height:1.75; color:rgba(255,255,255,0.65); margin:0 0 2rem;">
+      Once a month: a short reflection on ministry, vocation, and the sacred ordinary — written for people who carry more than one calling.
+    </p>
+
+    <!-- Subscribe form -->
+    <div style="display:flex; flex-direction:column; gap:0.75rem; max-width:420px; margin:0 auto;" id="subscribe-form">
+      <input id="email-input" type="email" placeholder="your@email.com" class="email-input" autocomplete="email" />
+      <button onclick="handleSubscribe()" class="btn-cta" style="width:100%; text-align:center; padding:0.8rem 2rem;">
+        Subscribe — it's free
+      </button>
+    </div>
+
+    <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:rgba(255,255,255,0.35); margin:1rem 0 0;">
+      No spam. Unsubscribe any time. Sent the first Monday of each month.
+    </p>
+
+    <!-- Success message (hidden) -->
+    <div id="subscribe-success" style="display:none; background:rgba(255,255,255,0.08); border:1px solid rgba(240,212,120,0.3); border-radius:4px; padding:1.25rem; margin-top:1rem;">
+      <p style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; color:#F0D478; margin:0 0 0.25rem;">You're in.</p>
+      <p style="font-family:'Inter',sans-serif; font-size:0.85rem; color:rgba(255,255,255,0.65); margin:0;">First issue arrives the next Monday of the month.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer style="background:#263f4e; padding:2.5rem 2rem; border-top:1px solid rgba(255,255,255,0.07);">
+  <div style="max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
+
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div style="width:28px; height:28px; border:1.5px solid rgba(240,212,120,0.5); border-radius:2px; display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:0.85rem; color:rgba(240,212,120,0.7);">KB</span>
+      </div>
+      <span style="font-family:'Inter',sans-serif; font-size:0.8rem; color:rgba(255,255,255,0.4);">© 2025 Kristen Plinke Bentley</span>
+    </div>
+
+    <nav style="display:flex; gap:1.5rem; flex-wrap:wrap;" aria-label="Footer navigation">
+      <a href="#about"   class="nav-link" style="font-size:0.8rem;">About</a>
+      <a href="#book"    class="nav-link" style="font-size:0.8rem;">Book</a>
+      <a href="#blog"    class="nav-link" style="font-size:0.8rem;">Writing</a>
+      <a href="#speaking" class="nav-link" style="font-size:0.8rem;">Speaking</a>
+      <a href="#connect" class="nav-link" style="font-size:0.8rem;">Newsletter</a>
+    </nav>
+
+    <div style="display:flex; gap:1rem;">
+      <a href="#" aria-label="Twitter / X" class="nav-link" style="font-size:0.8rem;">Twitter</a>
+      <a href="#" aria-label="Facebook"    class="nav-link" style="font-size:0.8rem;">Facebook</a>
+      <a href="#" aria-label="Instagram"   class="nav-link" style="font-size:0.8rem;">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     FILTER BUTTON STYLES
+══════════════════════════════════════════ -->
+<style>
+  .filter-btn {
+    font-family:'Inter',sans-serif;
+    font-size:0.78rem;
+    font-weight:500;
+    letter-spacing:0.04em;
+    padding:0.4rem 1rem;
+    border-radius:2px;
+    border:1px solid #cbd5e1;
+    background:#ffffff;
+    color:#64748b;
+    cursor:pointer;
+    transition:background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .filter-btn:hover { border-color:#375B70; color:#375B70; }
+  .filter-btn.active-filter { background:#375B70; color:#ffffff; border-color:#375B70; }
+</style>
+
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+  /* ── Mobile nav toggle ── */
+  function toggleMenu() {
+    var menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+  }
+
+  /* ── Blog filter ── */
+  function filterPosts(category) {
+    var cards = document.querySelectorAll('#posts-grid .blog-card');
+    var btns  = document.querySelectorAll('.filter-btn');
+
+    btns.forEach(function(btn) {
+      btn.classList.toggle('active-filter', btn.dataset.filter === category);
+    });
+
+    cards.forEach(function(card) {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = 'flex';
+        card.style.flexDirection = 'column';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  /* ── Newsletter subscribe ── */
+  function handleSubscribe() {
+    var input   = document.getElementById('email-input');
+    var form    = document.getElementById('subscribe-form');
+    var success = document.getElementById('subscribe-success');
+
+    if (!input.value || !input.value.includes('@')) {
+      input.style.borderColor = '#C26E40';
+      input.focus();
+      return;
+    }
+
+    form.style.display = 'none';
+    success.style.display = 'block';
+  }
+
+  /* ── Load more (stub) ── */
+  function loadMore() {
+    var btn = event.target;
+    btn.textContent = 'All posts loaded';
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+    btn.style.cursor = 'default';
+  }
+
+  /* ── Scroll reveal ── */
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    revealObserver.observe(el);
+  });
+
+  /* ── Smooth scroll ── */
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

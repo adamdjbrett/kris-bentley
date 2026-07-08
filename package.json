@@ -1,0 +1,17 @@
+{
+  "name": "kris-bentley",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@awesome.me/buildawesome": "0.0.1"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "3.1.6",
+    "@11ty/eleventy-img": "6.0.4",
+    "@apleasantview/eleventy-plugin-baseline": "0.1.0-next.44"
+  }
+}
