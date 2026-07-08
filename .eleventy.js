@@ -3,6 +3,11 @@ const baseline = require("@apleasantview/eleventy-plugin-baseline").default;
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(baseline);
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  eleventyConfig.addCollection("bookCrate", function (collectionApi) {
+    return collectionApi
+      .getFilteredByTag("book-crate")
+      .sort((a, b) => b.date - a.date);
+  });
 
   return {
     dir: {

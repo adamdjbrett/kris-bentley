@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title }} | Book Crate</title>
+  <style>
+    :root {
+      --ink: #1e2d36;
+      --teal: #375b70;
+      --teal-light: #5ca0bf;
+      --gold: #f0d478;
+      --paper: #f9fbfc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.7;
+    }
+    .wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+    a { color: var(--teal); }
+    .back {
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    h1 {
+      margin: 1rem 0 0.75rem;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--teal);
+      line-height: 1.15;
+    }
+    .meta {
+      margin: 0 0 1.5rem;
+      padding: 0.85rem 1rem;
+      border-left: 3px solid var(--gold);
+      background: #fff;
+    }
+    .meta strong { color: #263f4e; }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.75rem;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border: 1px solid #c8dce6;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      color: #35576d;
+      background: #f3f9fc;
+    }
+    article {
+      background: #fff;
+      border: 1px solid #e4edf2;
+      border-radius: 6px;
+      padding: 1.3rem 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="back" href="/book-crate/">Book Crate</a>
+    <h1>{{ title }}</h1>
+    <p class="meta">
+      <strong>Description:</strong> {{ description }}<br />
+      <strong>ISBN:</strong> {{ isbn }}
+    </p>
+    {% if tags %}
+      <div class="tags" aria-label="Tags">
+        {% for tag in tags %}
+          {% if tag != "all" and tag != "book-crate" %}
+            <span class="tag">{{ tag }}</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <article>
+      {{ content | safe }}
+    </article>
+  </main>
+</body>
+</html>
