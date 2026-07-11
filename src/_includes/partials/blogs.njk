@@ -1,0 +1,67 @@
+<section id="book-crate" style="padding:5rem 2rem; background:#f8fafc;">
+  <div style="max-width:1100px; margin:0 auto;">
+
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:2.5rem; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#5CA0BF; margin:0 0 0.5rem;">{{book_create.info}}</p>
+        <h2 class="section-bracket" 
+        style="font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:400; color:#263f4e; margin:0; line-height:1.2;">
+          {{book_create.title}}
+        </h2>
+      </div>
+      <a href="{{book_create.button.url}}" class="prose-link" style="font-family:'Inter',sans-serif; font-size:0.875rem; white-space:nowrap;">{{book_create.button.text}}</a>
+    </div>
+
+    <div id="filter-tabs" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2rem;">
+      <button onclick="filterPosts('all')" class="filter-btn active-filter" data-filter="all">All</button>
+      {% set allTags = [] %}
+      {% for p in collections["book-crate"] %}
+        {% for tag in p.data.tags %}
+          {% if tag != "book-crate" and tag not in allTags %}
+            {% set allTags = (allTags.push(tag), allTags) %}
+            <button onclick="filterPosts('{{ tag }}')" class="filter-btn" data-filter="{{ tag }}">
+              {{ tag | capitalize }}
+            </button>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+
+    <div id="posts-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:1.5rem;">
+      {% for p in collections["book-crate"] | reverse %}
+        {% if loop.index0 < 4 %}
+          {% set displayTag = "" %}
+          {% for tag in p.data.tags %}
+            {% if tag != "book-crate" and displayTag == "" %}
+              {% set displayTag = tag %}
+            {% endif %}
+          {% endfor %}
+
+          <article class="blog-card reveal" data-category="{{ displayTag }}">
+            <div style="height:6px; background:#375B70;"></div>
+            <div style="padding:1.5rem;">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+                <span class="tag-pill" style="background:#e6f1f8; color:#375B70;">{{ displayTag | capitalize }}</span>
+                <time style="font-family:'Inter',sans-serif; font-size:0.72rem; color:#94a3b8;">
+                  {{ p.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) }}
+                </time>
+              </div>
+              <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500; color:#1e2d36; margin:0 0 0.6rem; line-height:1.3;">
+                <a href="{{ p.url }}" style="text-decoration:none; color:inherit;">{{ p.data.title }}</a>
+              </h3>
+              <p style="font-family:'Inter',sans-serif; font-size:0.875rem; line-height:1.7; color:#64748b; margin:0 0 1.25rem;">
+                {{ p.data.description }}
+              </p>
+              <a href="{{ p.url }}" class="prose-link" style="font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:500; letter-spacing:0.03em;">Read more →</a>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="{{book_create.button_cta.url}}" class="btn-outline" style="border-color:#375B70; color:#375B70;">{{book_create.button_cta.text}}</a>
+    </div>
+
+  </div>
+</section>

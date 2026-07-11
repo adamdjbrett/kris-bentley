@@ -1,5 +1,4 @@
 ---
-layout: book-crate-entry.njk
 title: Wholehearted Faith
 description: A review focused on practical discipleship and community-grounded formation.
 isbn: "9780830848225"

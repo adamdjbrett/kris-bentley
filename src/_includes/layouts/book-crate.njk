@@ -1,15 +1,36 @@
 ---
-layout: false
-permalink: /book-crate/
-title: Book Crate
+layout: layouts/base.njk
 ---
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ title }} | Kristen Plinke Bentley</title>
-  <style>
+<div class="wrap">
+    <h1>{{title}}</h1>
+    <p class="intro">{{description}}</p>
+    <!--<p class="filter-note">Tag Filter: book-crate</p>-->
+
+    {% if collections.bookCrate.length %}
+      <section class="grid" aria-label="Book Crate entries">
+        {% for post in collections.bookCrate %}
+          <article class="card">
+            <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+            <p class="meta">ISBN: {{ post.data.isbn }}</p>
+            <p class="desc">{{ post.data.description }}</p>
+            {% if post.data.tags %}
+              <div class="tags">
+                {% for tag in post.data.tags %}
+                  {% if tag != "all" and tag != "book-crate" %}
+                    <span class="tag">{{ tag }}</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </section>
+    {% else %}
+      <p>No book reviews have been added yet.</p>
+    {% endif %}
+    </div>
+
+    <style>
     :root {
       --ink: #1e2d36;
       --teal: #375b70;
@@ -133,40 +154,4 @@ title: Book Crate
       color: #35576d;
       background: #f3f9fc;
     }
-  </style>
-</head>
-<body>
-  <header class="topbar">
-    <a href="/">Kristen Plinke Bentley</a>
-  </header>
-
-  <main class="wrap">
-    <h1>Book Crate</h1>
-    <p class="intro">A book review collection for congregational leaders, teachers, and readers who want to grow deeper in faith and life conversations.</p>
-    <p class="filter-note">Tag Filter: book-crate</p>
-
-    {% if collections.bookCrate.length %}
-      <section class="grid" aria-label="Book Crate entries">
-        {% for post in collections.bookCrate %}
-          <article class="card">
-            <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
-            <p class="meta">ISBN: {{ post.data.isbn }}</p>
-            <p class="desc">{{ post.data.description }}</p>
-            {% if post.data.tags %}
-              <div class="tags">
-                {% for tag in post.data.tags %}
-                  {% if tag != "all" and tag != "book-crate" %}
-                    <span class="tag">{{ tag }}</span>
-                  {% endif %}
-                {% endfor %}
-              </div>
-            {% endif %}
-          </article>
-        {% endfor %}
-      </section>
-    {% else %}
-      <p>No book reviews have been added yet.</p>
-    {% endif %}
-  </main>
-</body>
-</html>
+</style>

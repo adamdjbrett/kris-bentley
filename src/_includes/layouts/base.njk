@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% include "partials/seo.njk" %}
+</head>
+<body>
+{% include "partials/nav.njk" %}
+<main>
+{{content | safe}}
+</main>
+{% include "partials/newsletter.njk" %}
+{% include "partials/footer.njk" %}
+{% include "partials/scripts.njk" %}
+</body>
+</html>

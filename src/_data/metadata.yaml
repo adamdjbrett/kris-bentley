@@ -1,0 +1,97 @@
+title: Kris Bentley
+description: Kris Bentley is a software engineer, writer, and speaker. He is the author of several books on web development and has spoken at conferences around the world.
+url: https://krisbentley.com
+author: Kris Bentley
+formspree_id: https://formspree.io/f/xxxxx
+
+nav:
+ title: Kristen Plinke Bentley
+ text_logo: KB
+ list: 
+   - title: About
+     url: "#about"
+   - title: Book
+     url: "#book"
+   - title: Book Crate
+     url: "#book-crate"
+   - title: Speaking
+     url: "#speaking"
+   - title: Contact
+     url: "#contact"
+ button: 
+   text: Get the book
+   url: "#book"
+
+nav_page:
+ title: Kristen Plinke Bentley
+ text_logo: KB
+ list: 
+   - title: About
+     url: /#about/
+   - title: Book
+     url: /#book/
+   - title: Book Crate
+     url: /#book-crate/
+   - title: Speaking
+     url: /#speaking/
+   - title: Contact
+     url: /#contact/
+ button: 
+   text: Get the book
+   url: "/#book"
+
+
+newsletter: 
+ info: Field Notes Newsletter
+ title: Theology for the
+ span: full week
+ text: |
+    Once a month: a short reflection on ministry, vocation, and the sacred ordinary — written for people who carry more than one calling.
+ button: Subscribe — it's free
+ disclaimer: No spam. Unsubscribe any time. Sent the first Monday of each month.
+
+footer: 
+  text_logo: KB
+  copyrights: © 2024 Kris Bentley.
+  social: 
+    - title: TWITTER
+      url: https://twitter.com/
+    - title: FACEBOOK
+      url: https://www.facebook.com/
+    - title: INSTAGRAM
+      url: https://www.instagram.com/
+  nav: 
+   - title: About
+     url: "#about"
+   - title: Book
+     url: "#book"
+   - title: Book Crate
+     url: "#book-crate"
+   - title: Speaking
+     url: "#speaking"
+   - title: Contact
+     url: "#contact"
+
+
+footer_page: 
+  text_logo: KB
+  copyrights: © 2024 Kris Bentley.
+  social: 
+    - title: TWITTER
+      url: https://twitter.com/
+    - title: FACEBOOK
+      url: https://www.facebook.com/
+    - title: INSTAGRAM
+      url: https://www.instagram.com/
+  nav: 
+   - title: About
+     url: /#about
+   - title: Book
+     url: /#book
+   - title: Book Crate
+     url: /#book-crate
+   - title: Speaking
+     url: /#speaking
+   - title: Contact
+     url: /#contact
+

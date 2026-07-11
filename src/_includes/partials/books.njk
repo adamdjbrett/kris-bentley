@@ -1,0 +1,29 @@
+<section id="book" style="background:#263f4e; padding:3.5rem 2rem;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center;" class="md:grid-cols-2">
+      <div>
+        <p style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#5CA0BF; margin:0 0 0.6rem;">{{book.info}}</p>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:400; color:#ffffff; margin:0 0 0.75rem; line-height:1.2;">
+          <em>{{book.title}}</em><br>
+          <span style="font-size:1.4rem; font-weight:300; color:rgba(255,255,255,0.7);">{{book.description}}</span>
+        </h2>
+        <p style="font-family:'Inter',sans-serif; font-size:0.95rem; line-height:1.75; color:rgba(255,255,255,0.65); max-width:520px; margin:0 0 1.5rem;">
+          {{book.text}}
+        </p>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <a href="{{book.button1.url}}" class="btn-cta">{{book.button1.text}}</a>
+          {% for b in book.button_list %}
+          <a href="{{b.url}}" class="btn-outline" style="border-color:rgba(255,255,255,0.3); color:rgba(255,255,255,0.7);">{{b.text}}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <!-- Pull quote -->
+      <div style="max-width:320px;">
+        <div class="pull-quote" style="border-color:#5CA0BF; color:rgba(255,255,255,0.85);">
+          "{{book.blockquote.text}}"
+        </div>
+        <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:rgba(255,255,255,0.4); margin:0.75rem 0 0; letter-spacing:0.04em;">— from <em>{{book.blockquote.info}}</em></p>
+      </div>
+    </div>
+  </div>
+</section>
