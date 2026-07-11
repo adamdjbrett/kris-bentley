@@ -12,6 +12,9 @@
   "dependencies": {
     "@11ty/eleventy": "3.1.6",
     "@11ty/eleventy-img": "6.0.4",
-    "@apleasantview/eleventy-plugin-baseline": "0.1.0-next.44"
+    "@11ty/eleventy-plugin-rss": "^2.0.2",
+    "@apleasantview/eleventy-plugin-baseline": "0.1.0-next.44",
+    "js-yaml": "^4.1.0",
+    "markdown-it": "^14.1.0"
   }
 }

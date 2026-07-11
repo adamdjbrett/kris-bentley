@@ -1,5 +1,4 @@
 ---
-layout: book-crate-entry.njk
 title: Theology in the Neighborhood
 description: A review of place-based theology and ministry imagination for local communities.
 isbn: "9781587434402"

@@ -1,0 +1,23 @@
+<footer style="background:#263f4e; padding:2.5rem 2rem; border-top:1px solid rgba(255,255,255,0.07);">
+  <div style="max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
+
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div style="width:28px; height:28px; border:1.5px solid rgba(240,212,120,0.5); border-radius:2px; display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:0.85rem; color:rgba(240,212,120,0.7);">{{metadata.footer_page.text_logo}}</span>
+      </div>
+      <span style="font-family:'Inter',sans-serif; font-size:0.8rem; color:rgba(255,255,255,0.4);">{{metadata.footer_page.copyrights}}</span>
+    </div>
+
+    <nav style="display:flex; gap:1.5rem; flex-wrap:wrap;" aria-label="Footer navigation">
+      {% for a in metadata.footer_page.nav %}
+      <a href="{{a.url}}" class="nav-link" style="font-size:0.8rem;">{{a.title}}</a>
+      {% endfor %}
+    </nav>
+
+    <div style="display:flex; gap:1rem;">
+      {% for n in metadata.footer_page.social %}
+      <a href="{{n.url}}" aria-label="{{ n.title }}" class="nav-link" style="font-size:0.8rem;">{{ n.title }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</footer>

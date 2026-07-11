@@ -1,0 +1,26 @@
+---
+permalink: feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Kris Bentley</title>
+  <subtitle>Resources for ministry and teaching.</subtitle>
+  <link href="{{ 'feed.xml' | absoluteUrl('https://krisbentley.com') }}" rel="self"/>
+  <link href="https://krisbentley.com/"/>
+  <updated>{{ collections.bookCrate | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <id>https://krisbentley.com/</id>
+  <author>
+    <name>Kris Bentley</name>
+  </author>
+  {%- for post in collections.bookCrate %}
+  {% set absolutePostUrl %}{{ post.url | absoluteUrl('https://krisbentley.com') }}{% endset %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ absolutePostUrl }}"/>
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <id>{{ absolutePostUrl }}</id>
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
+  </entry>
+  {%- endfor %}
+</feed>

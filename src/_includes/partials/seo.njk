@@ -1,0 +1,62 @@
+<title>{{ title or metadata.title }}</title>
+<meta name="description" content="{{ description or metadata.description }}">
+<link rel="canonical" href="{{ metadata.url }}{{ page.url }}">
+
+<meta property="og:title" content="{{ title or metadata.title }}">
+<meta property="og:description" content="{{ description or metadata.description }}">
+<meta property="og:image" content="{{ image or metadata.image }}">
+<meta property="og:url" content="{{ metadata.url }}{{ page.url }}">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title or metadata.title }}">
+<meta name="twitter:description" content="{{ description or metadata.description }}">
+<meta name="twitter:image" content="{{ image or metadata.image }}">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ metadata.title }}",
+  "url": "{{ metadata.url }}",
+  "description": "{{ metadata.description }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ metadata.url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.cdn.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/js/all.min.js" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'slate-teal':   '#375B70',
+            'slate-teal-dk':'#263f4e',
+            'cerulean':     '#5CA0BF',
+            'cerulean-lt':  '#a8cfe0',
+            'gold':         '#F0D478',
+            'gold-dk':      '#c9a93a',
+            'rust':         '#C26E40',
+            'rust-dk':      '#a05530',
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            body:    ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link href="{{ 'feed.xml' | absoluteUrl(metadata.url) }}" rel="self"/>
+  <link rel="alternate" type="application/atom+xml" title="{{metadata.title}}" href="/feed.xml">
+  <style>
+  {% include "css/main.css" %}
+</style>

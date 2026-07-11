@@ -1,10 +1,28 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ title }} | Book Crate</title>
-  <style>
+---
+layout: layouts/page.njk
+---
+
+<div class="wrap">
+    <a class="back" href="/book-crate/">Book Crate</a>
+    <h1>{{ title }}</h1>
+    <p class="meta">
+      <strong>Description:</strong> {{ description }}<br />
+      <strong>ISBN:</strong> {{ isbn }}
+    </p>
+    {% if tags %}
+      <div class="tags" aria-label="Tags">
+        {% for tag in tags %}
+          {% if tag != "all" and tag != "book-crate" %}
+            <span class="tag">{{ tag }}</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <article>
+      {{ content | safe }}
+    </article>
+  </div>
+<style>
     :root {
       --ink: #1e2d36;
       --teal: #375b70;
@@ -71,27 +89,3 @@
       padding: 1.3rem 1.2rem;
     }
   </style>
-</head>
-<body>
-  <main class="wrap">
-    <a class="back" href="/book-crate/">Book Crate</a>
-    <h1>{{ title }}</h1>
-    <p class="meta">
-      <strong>Description:</strong> {{ description }}<br />
-      <strong>ISBN:</strong> {{ isbn }}
-    </p>
-    {% if tags %}
-      <div class="tags" aria-label="Tags">
-        {% for tag in tags %}
-          {% if tag != "all" and tag != "book-crate" %}
-            <span class="tag">{{ tag }}</span>
-          {% endif %}
-        {% endfor %}
-      </div>
-    {% endif %}
-    <article>
-      {{ content | safe }}
-    </article>
-  </main>
-</body>
-</html>
