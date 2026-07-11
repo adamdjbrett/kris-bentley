@@ -15,7 +15,7 @@ hero:
   button2: 
     text: Explore Book Crate
     url: /book-crate/
-  image: "/assets/images/9780827203419BivocationalMinistrycover_1041x1609.jpg"
+  image: "/assets/images/kris.webp"
   stats: 
     - title: 1 in 4
       text: U.S. ministers serve bivocationally
@@ -27,6 +27,7 @@ hero:
 book: 
   info: "New from Chalice Press"
   title: "Bivocational Ministry:"
+  cover: "/assets/images/9780827203419BivocationalMinistrycover_1041x1609.jpg"
   description: Field Notes for Congregations and Ministers
   text: |
         A practical, pastoral guide for congregations navigating ministry when their pastor also holds another job — and for ministers learning to hold both worlds with integrity and grace.
@@ -44,8 +45,8 @@ book:
      info: "Bivocational Ministry"
 
 book_create: 
-  info: From the blog
-  title: "Field Notes & Reflections"
+  info: Curated resource
+  title: "Book Crate"
   button: 
     text: All posts →
     url: /book-crate/

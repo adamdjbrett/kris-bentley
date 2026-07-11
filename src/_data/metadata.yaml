@@ -46,9 +46,11 @@ newsletter:
  title: Theology for the
  span: full week
  text: |
-    Once a month: a short reflection on ministry, vocation, and the sacred ordinary — written for people who carry more than one calling.
- button: Subscribe — it's free
- disclaimer: No spam. Unsubscribe any time. Sent the first Monday of each month.
+    Explore our curated collection of books, reflection guides, and practical tools designed to bridge the gap between theology and your daily work.
+ button: 
+   text: Shop the Collection
+   url: "#"
+ disclaimer: New resources added monthly.
 
 footer: 
   text_logo: KB
