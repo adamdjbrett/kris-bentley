@@ -1,6 +1,7 @@
 <section id="book" style="background:#263f4e; padding:3.5rem 2rem;">
   <div style="max-width:1100px; margin:0 auto;">
-    <div style="display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center;" class="md:grid-cols-2">
+    <div style="display:grid; grid-template-columns:1fr 320px; gap:4rem; align-items:start;" class="md:grid-cols-2">
+      
       <div>
         <p style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#5CA0BF; margin:0 0 0.6rem;">{{book.info}}</p>
         <h2 style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:400; color:#ffffff; margin:0 0 0.75rem; line-height:1.2;">
@@ -17,13 +18,23 @@
           {% endfor %}
         </div>
       </div>
-      <!-- Pull quote -->
-      <div style="max-width:320px;">
-        <div class="pull-quote" style="border-color:#5CA0BF; color:rgba(255,255,255,0.85);">
+
+      <div>
+        <div style="position:relative; padding:20px; margin-bottom:2rem;">
+          <div style="position:absolute; top:0; left:0; width:30px; height:30px; border-top:2px solid #F0D478; border-left:2px solid #F0D478;"></div>
+          <div style="position:absolute; bottom:0; right:0; width:30px; height:30px; border-bottom:2px solid #F0D478; border-right:2px solid #F0D478;"></div>
+          
+          <img src="{{book.cover}}" alt="Book Cover" style="width:100%; display:block; box-shadow: 10px 10px 20px rgba(0,0,0,0.3);">
+        </div>
+
+        <div class="pull-quote" style="border-color:#5CA0BF; color:rgba(255,255,255,0.85); font-style:italic;">
           "{{book.blockquote.text}}"
         </div>
-        <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:rgba(255,255,255,0.4); margin:0.75rem 0 0; letter-spacing:0.04em;">— from <em>{{book.blockquote.info}}</em></p>
+        <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:rgba(255,255,255,0.4); margin:0.75rem 0 0; letter-spacing:0.04em;">
+          — from <em>{{book.blockquote.info}}</em>
+        </p>
       </div>
+      
     </div>
   </div>
 </section>

@@ -98,21 +98,24 @@
 
     /* ── Secondary button ── */
     .btn-outline {
-      background: transparent;
-      color: #F0D478;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      padding: 0.7rem 1.8rem;
-      border-radius: 2px;
-      border: 1.5px solid #F0D478;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-      display: inline-block;
-    }
-    .btn-outline:hover { background: #F0D478; color: #263f4e; }
+  background: transparent;
+  color: #F0D478;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 1.4rem 1.8rem;
+  border-radius: 2px;
+  border: 1.5px solid #F0D478;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.btn-outline:hover { background: #F0D478; color: #263f4e; }
 
     /* ── Prose link ── */
     .prose-link {
