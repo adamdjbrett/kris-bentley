@@ -1,36 +1,37 @@
-<section id="book" style="background:#263f4e; padding:3.5rem 2rem;">
-  <div style="max-width:1100px; margin:0 auto;">
-    <div style="display:grid; grid-template-columns:1fr 320px; gap:4rem; align-items:start;" class="md:grid-cols-2">
+<section id="book" class="bg-[#263f4e] py-12 px-4 md:py-14 md:px-8">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 lg:gap-16 items-start">
       
       <div>
-        <p style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#5CA0BF; margin:0 0 0.6rem;">{{book.info}}</p>
-        <h2 style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:400; color:#ffffff; margin:0 0 0.75rem; line-height:1.2;">
+        <p class="font-sans text-xs tracking-widest uppercase text-[#5CA0BF] mb-2">
+          {{book.info}}
+        </p>
+        <h2 class="font-['Cormorant_Garamond'] text-3xl md:text-4xl font-normal text-white mb-3 leading-tight">
           <em>{{book.title}}</em><br>
-          <span style="font-size:1.4rem; font-weight:300; color:rgba(255,255,255,0.7);">{{book.description}}</span>
+          <span class="text-xl md:text-2xl font-light text-white/70">{{book.description}}</span>
         </h2>
-        <p style="font-family:'Inter',sans-serif; font-size:0.95rem; line-height:1.75; color:rgba(255,255,255,0.65); max-width:520px; margin:0 0 1.5rem;">
+        <p class="font-sans text-sm md:text-base leading-relaxed text-white/65 max-w-[520px] mb-6">
           {{book.text}}
         </p>
-        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <div class="flex flex-wrap gap-3">
           <a href="{{book.button1.url}}" class="btn-cta">{{book.button1.text}}</a>
           {% for b in book.button_list %}
-          <a href="{{b.url}}" class="btn-outline" style="border-color:rgba(255,255,255,0.3); color:rgba(255,255,255,0.7);">{{b.text}}</a>
+          <a href="{{b.url}}" class="btn-outline border-white/30 text-white/70">{{b.text}}</a>
           {% endfor %}
         </div>
       </div>
 
       <div>
-        <div style="position:relative; padding:20px; margin-bottom:2rem;">
-          <div style="position:absolute; top:0; left:0; width:30px; height:30px; border-top:2px solid #F0D478; border-left:2px solid #F0D478;"></div>
-          <div style="position:absolute; bottom:0; right:0; width:30px; height:30px; border-bottom:2px solid #F0D478; border-right:2px solid #F0D478;"></div>
-          
-          <img src="{{book.cover}}" alt="Book Cover" style="width:100%; display:block; box-shadow: 10px 10px 20px rgba(0,0,0,0.3);">
+        <div class="relative p-5 mb-6">
+          <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#F0D478]"></div>
+          <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#F0D478]"></div>
+          <img src="{{book.cover}}" alt="Book Cover" class="w-full block shadow-2xl">
         </div>
 
-        <div class="pull-quote" style="border-color:#5CA0BF; color:rgba(255,255,255,0.85); font-style:italic;">
+        <div class="border-l-4 border-[#5CA0BF] pl-4 text-white/85 italic font-sans text-sm md:text-base leading-relaxed">
           "{{book.blockquote.text}}"
         </div>
-        <p style="font-family:'Inter',sans-serif; font-size:0.75rem; color:rgba(255,255,255,0.4); margin:0.75rem 0 0; letter-spacing:0.04em;">
+        <p class="font-sans text-xs text-white/40 mt-3 tracking-wide">
           — from <em>{{book.blockquote.info}}</em>
         </p>
       </div>
